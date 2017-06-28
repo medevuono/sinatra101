@@ -1,5 +1,11 @@
 require 'sinatra'
 
 get '/' do
-  'Hello world'
+  @name = "Gustavo"
+  erb :index
+end
+
+get '/profile' do
+  @name = "Gustavo"
+  erb :profile
 end
