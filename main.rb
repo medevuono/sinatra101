@@ -1,11 +1,14 @@
 require 'sinatra'
+require 'faker'
+
+people = []
 
 get '/' do
   @name = "Gustavo"
   erb :index
 end
 
-get '/profile' do
-  @name = "Gustavo"
-  erb :profile
+post '/people/?' do
+  people.push(Faker::Name.name)
+  puts people
 end
