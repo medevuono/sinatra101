@@ -6,5 +6,6 @@ require './config/application'
 # Load Routes
 require './config/routes'
 
-# Quotes route
+# Quotes
+require './app/models/quote'
 require './app/controllers/quotes_controller'

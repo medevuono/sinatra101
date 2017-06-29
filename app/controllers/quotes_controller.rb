@@ -1,3 +1,3 @@
 get '/quotes' do
-  erb :index
+  erb :'quotes/index'
 end
