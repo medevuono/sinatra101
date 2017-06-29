@@ -1,14 +1,10 @@
 require 'sinatra'
-require 'faker'
 
-# Load confguration file
-require './config/development'
+# Load configuration file
+require './config/application'
 
-# Root route
-get '/' do
-  @name = "Gustavo"
-  erb :index
-end
+# Load Routes
+require './config/routes'
 
-# Profile route
-require './app/controllers/profile'
+# Quotes route
+require './app/controllers/quotes_controller'
