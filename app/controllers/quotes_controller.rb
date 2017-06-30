@@ -8,7 +8,7 @@ get '/quotes/new' do
 end
 
 post '/quotes' do
-  @@quotes.unshift({ description: params[:description], author: params[:author] })
+  @@quotes.push({ description: params[:description], author: params[:author] })
   redirect '/quotes'
 end
 
