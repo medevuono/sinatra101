@@ -2,6 +2,22 @@
   <head>
     <title>Quotes app</title>
     <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+      blockquote {
+        position: relative;
+      }
+      blockquote *{
+        padding-left: 46px;
+      }
+      blockquote:before{
+        color: lightgrey;
+        content: "“";
+        font-size: 96px;
+        position: absolute;
+        top: -32px;
+        z-index: -9999;
+      }
+    </style>
   </head>
   <body>
     <div class="container">
