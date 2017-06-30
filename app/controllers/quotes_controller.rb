@@ -8,6 +8,12 @@ get '/quotes/new' do
 end
 
 post '/quotes' do
-  @@quotes.push({ description: params[:description], author: params[:author] })
+  @@quotes.unshift({ description: params[:description], author: params[:author] })
   redirect '/quotes'
+end
+
+get '/quotes/:id' do
+  index = params[:id].to_i
+  @q = @@quotes[index]
+  erb :'quotes/show'
 end
