@@ -1,4 +1,12 @@
 <div class="jumbotron">
   <h1>Quotes app</h1>
-  <p><a class="btn btn-primary btn-lg" href="#" role="button">Create one</a></p>
+  <p>
+    <a class="btn btn-primary btn-lg" href="/quotes/new" role="button">Create one</a>
+  </p>
 </div>
+<% @quotes.each do |q| %>
+<blockquote>
+  <p><%= q[:description] %></p>
+  <footer><%= q[:author] %></footer>
+</blockquote>
+<% end %>
