@@ -1,5 +1,5 @@
 get '/quotes' do
-  @quotes = @@quotes
+  @quotes = Quote.all
   erb :'quotes/index'
 end
 
@@ -8,30 +8,30 @@ get '/quotes/new' do
 end
 
 post '/quotes' do
-  @@quotes.push({ description: params[:description], author: params[:author] })
+  Quote.add({ description: params[:description], author: params[:author] })
   redirect '/quotes'
 end
 
 get '/quotes/:id' do
-  @index = params[:id].to_i
-  @q = @@quotes[@index]
+  @q = Quote.findById(params[:id].to_i)
   erb :'quotes/show'
 end
 
 get '/quotes/:id/edit' do
-  @index = params[:id].to_i
-  @q = @@quotes[@index]
+  @q = Quote.findById(params[:id].to_i)
   erb :'quotes/edit'
 end
 
 post '/quotes/:id/update' do
-  @index = params[:id].to_i
-  @@quotes[@index] = { description: params[:description], author: params[:author] }
+  Quote.update({
+    id: params[:id].to_i, 
+    description: params[:description], 
+    author: params[:author] 
+  })
   redirect '/quotes'
 end
 
 get '/quotes/:id/delete' do
-  @index = params[:id].to_i
-  @@quotes.delete_at(@index)
+  Quote.delete(params[:id].to_i)
   redirect '/quotes'
 end

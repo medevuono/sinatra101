@@ -7,18 +7,18 @@
     <a class="btn btn-primary btn-lg" href="/quotes/new" role="button">Create one</a>
   </p>
 </div>
-<% @quotes.each_with_index do |q, i| %>
+<% @quotes.each do |q| %>
 <blockquote>
   <p><%= q[:description] %></p>
   <footer><%= q[:author] %></footer>
 </blockquote>
-<a href="/quotes/<%= i %>" class="btn btn-default">
+<a href="/quotes/<%= q[:id] %>" class="btn btn-default">
   <span class="glyphicon glyphicon-share"></span> Share
 </a>
-<a href="/quotes/<%= i %>/edit" class="btn btn-default">
+<a href="/quotes/<%= q[:id] %>/edit" class="btn btn-default">
   <span class="glyphicon glyphicon-edit"></span> Edit
 </a>
-<a href="/quotes/<%= i %>/delete" class="btn btn-danger">
+<a href="/quotes/<%= q[:id] %>/delete" class="btn btn-danger">
   <span class="glyphicon glyphicon-remove"></span> Delete
 </a>
 

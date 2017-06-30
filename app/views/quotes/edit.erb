@@ -3,7 +3,7 @@
   <li><a href="#" class="active">Edit a quote</a></li>
 </ol>
 <h1>Edit a quote</h1>
-<form action="/quotes/<%= @index %>/update" method="post">
+<form action="/quotes/<%= @q[:id] %>/update" method="post">
   <div class="form-group">
     <label>Description</label>
     <input type="text" class="form-control" name="description" value="<%= @q[:description] %>">
