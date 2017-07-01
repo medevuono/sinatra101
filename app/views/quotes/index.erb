@@ -7,6 +7,12 @@
     <a class="btn btn-primary btn-lg" href="/quotes/new" role="button">Create one</a>
   </p>
 </div>
+<ul class="nav nav-pills" role="tablist">
+  <li role="presentation" <%= @order == "date" ? 'class="active"' : '' %>><a href="/quotes?order=date">Date</a></li>
+  <li role="presentation" <%= @order == "description" ? 'class="active"' : '' %>><a href="/quotes?order=description">Description</a></li>
+  <li role="presentation" <%= @order == "author" ? 'class="active"' : '' %>><a href="/quotes?order=author">Author</a></li>
+</ul>
+<hr>
 <% @quotes.each do |q| %>
 <blockquote>
   <p><%= q[:description] %></p>

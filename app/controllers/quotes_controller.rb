@@ -1,5 +1,12 @@
 get '/quotes' do
-  @quotes = Quote.all
+  if params[:order]
+    session[:order] = params[:order]
+  elsif !session[:order]
+    session[:order] = "date"
+  end
+  
+  @quotes = Quote.all(session[:order])
+  @order = session[:order]
   erb :'quotes/index'
 end
 

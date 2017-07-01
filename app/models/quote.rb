@@ -6,8 +6,15 @@ class Quote
     author: "C.G. Jung"
   }]
 
-  def self.all()
-    @@quotes
+  def self.all(order)
+    case order
+    when "description"
+      @@quotes.sort { |x,y| x[:description] <=> y[:description] }
+    when "author"
+      @@quotes.sort { |x,y| x[:author] <=> y[:author] }
+    else
+      @@quotes
+    end
   end
 
   def self.add(quote)
