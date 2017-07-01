@@ -30,7 +30,7 @@ class Quote
 
   def self.findById(id)
     index = findIndexById(id)
-    @@quotes[index]
+    index ? @@quotes[index] : nil
   end
 
   def self.update(quote)
