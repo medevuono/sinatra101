@@ -22,27 +22,24 @@ get '/api/quotes/:id' do
   response.to_json
 end
 
-=begin
-
 put '/api/quotes/:id' do
-  Quote.update({
-    id: params[:id].to_i, 
-    description: params[:description], 
-    author: params[:author] 
-  })
-  session[:flash] = {
-    message: "The quote has been edited",
-    type: "warning"
+  body = JSON.parse( request.body.read.to_s, {symbolize_names: true} )
+  body[:id] = params[:id].to_i
+  quote = Quote.update(body)
+  content_type 'application/json'
+  response = {
+    success: quote ? "true" : "false",
+    data: quote ? quote : {},
   }
-  redirect '/quotes'
+  response.to_json
 end
 
 delete '/api/quotes/:id' do
-  Quote.delete(params[:id].to_i)
-  session[:flash] = {
+  quote = Quote.delete(params[:id].to_i)
+  content_type 'application/json'
+  response = {
+    success: quote ? "true" : "false",
     message: "The quote has been deleted",
-    type: "danger"
   }
-  redirect '/quotes'
+  response.to_json
 end
-=end

@@ -1,9 +1,9 @@
 class Quote
   @@secuence_id = 1;
   @@quotes = [{
-    id: 1, 
     description: "I am not what happened to me, I am what I choose to become.",
-    author: "C.G. Jung"
+    author: "C.G. Jung",
+    id: 1
   }]
 
   def self.all(order)
@@ -35,12 +35,12 @@ class Quote
 
   def self.update(quote)
     index = findIndexById(quote[:id])
-    @@quotes[index] = quote
+    index ? @@quotes[index] = quote : nil
   end
 
   def self.delete(id)
     index = findIndexById(id)
-    @@quotes.delete_at(index)
+    index ? @@quotes.delete_at(index) : nil
   end
 
 end
