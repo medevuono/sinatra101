@@ -13,6 +13,12 @@
   <li role="presentation" <%= @order == "author" ? 'class="active"' : '' %>><a href="/quotes?order=author">Author</a></li>
 </ul>
 <hr>
+<% if @flash %>
+<div class="alert alert-<%= @flash[:type] %> alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <%= @flash[:message] %>
+</div>
+<% end %>
 <% @quotes.each do |q| %>
 <blockquote>
   <p><%= q[:description] %></p>

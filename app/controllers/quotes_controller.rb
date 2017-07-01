@@ -4,9 +4,11 @@ get '/quotes' do
   elsif !session[:order]
     session[:order] = "date"
   end
-  
+
   @quotes = Quote.all(session[:order])
   @order = session[:order]
+  @flash = session[:flash]
+  session[:flash] = nil
   erb :'quotes/index'
 end
 
@@ -16,6 +18,10 @@ end
 
 post '/quotes' do
   Quote.add({ description: params[:description], author: params[:author] })
+  session[:flash] = {
+    message: "The quote has been added",
+    type: "success"
+  }
   redirect '/quotes'
 end
 
@@ -35,10 +41,18 @@ post '/quotes/:id/update' do
     description: params[:description], 
     author: params[:author] 
   })
+  session[:flash] = {
+    message: "The quote has been edited",
+    type: "warning"
+  }
   redirect '/quotes'
 end
 
 get '/quotes/:id/delete' do
   Quote.delete(params[:id].to_i)
+  session[:flash] = {
+    message: "The quote has been deleted",
+    type: "danger"
+  }
   redirect '/quotes'
 end
